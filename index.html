@@ -6,7 +6,7 @@
     </head>
     <body ng-controller="myController">
         <input [value]="source-property" name="test" ng-model="data">{{data}}<br>
-        <input type="submit" value="Submit" onclick="update();">
+        <input type="submit" value="Submit" ng-click="update();">
         <span id="output">{{newData}}</span>
 
         <script>
@@ -18,15 +18,8 @@
                
                 //autorun digest cycle
                 
-
-
-
-
-                //to manually run digest run 
-                //$scope.digest();
-                $scope.$apply(function(){
-
-                            $scope.$watch(
+                    $scope.update = function(){
+                        $scope.$watch(
                                 function($scope){
                                     return $scope.data;
                                 },
@@ -38,7 +31,25 @@
                                     ].join('');
                                 }
                             );
-                 }); //this accepts a function as callback
+
+                    };
+                //to manually run digest run 
+                //$scope.digest();
+                // $scope.$apply(function(){
+
+                //             $scope.$watch(
+                //                 function($scope){
+                //                     return $scope.data;
+                //                 },
+                //                 function(newValue, oldValue){
+                //                     document.getElementById('output').innerHTML = [
+                //                         'Old value: ', oldValue,
+                //                         '<br>',
+                //                         'New Value', newValue
+                //                     ].join('');
+                //                 }
+                //             );
+                //  }); //this accepts a function as callback
 
                 
 
