@@ -1,0 +1,50 @@
+<html ng-app="myApp">
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    </head>
+    <body ng-controller="myController">
+        <input [value]="source-property" name="test" ng-model="data">{{data}}<br>
+        <input type="submit" value="Submit" onclick="update();">
+        <span id="output">{{newData}}</span>
+
+        <script>
+            var app= angular.module('myApp', []);
+
+            app.controller('myController', function($scope){
+
+                $scope.data=0;
+               
+                //autorun digest cycle
+                
+
+
+
+
+                //to manually run digest run 
+                //$scope.digest();
+                $scope.$apply(function(){
+
+                            $scope.$watch(
+                                function($scope){
+                                    return $scope.data;
+                                },
+                                function(newValue, oldValue){
+                                    document.getElementById('output').innerHTML = [
+                                        'Old value: ', oldValue,
+                                        '<br>',
+                                        'New Value', newValue
+                                    ].join('');
+                                }
+                            );
+                 }); //this accepts a function as callback
+
+                
+
+
+
+            });
+        </script>
+    </body>
+</html>
